@@ -8,6 +8,9 @@ export class GifsService {
   private apiKey: string = 'bFAARjufg25n3oCgy268kCSuaHYcGMsi';
   private _historial: string[] = [];
 
+  // TODO: Cambiar tipo del any
+  public resultados: any[] = [];
+
   public get historial(): string[] {
     return [...this._historial];
   }
@@ -26,8 +29,10 @@ export class GifsService {
       .get(
         `https://api.giphy.com/v1/gifs/search?api_key=${this.apiKey}&q=${query}&limit=10`
       )
-      .subscribe((res) => {
+      // TODO: Cambiar tipo del any
+      .subscribe((res: any) => {
         console.log(res);
+        this.resultados = res.data;
       });
   }
 
