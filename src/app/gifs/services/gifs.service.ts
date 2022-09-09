@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Gif, SearchGifsResponse } from '../../interfaces/gif/SearchGifsResponse';
+import {
+  Gif,
+  SearchGifsResponse,
+} from '../../interfaces/gif/SearchGifsResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +19,9 @@ export class GifsService {
     return [...this._historial];
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this._historial = JSON.parse(localStorage.getItem('historial')!) || [];
+  }
 
   buscarGifs(query: string = '') {
     if (!query) return;
@@ -39,6 +44,8 @@ export class GifsService {
   private updateHistorial(query: string) {
     this._historial.unshift(query);
     this.historialMax(10);
+
+    localStorage.setItem('historial', JSON.stringify(this._historial));
   }
 
   private historialMax(maxCantidad: number) {
