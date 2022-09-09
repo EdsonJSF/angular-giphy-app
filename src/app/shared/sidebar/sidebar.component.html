@@ -1,7 +1,12 @@
 <div class="bg-dark border-right p-3" id="sidebar">
   <h3 class="text-light">Gifs-App</h3>
   <div class="list-group list-reset">
-    <a href="#" class="list-group-item list-group-item-action" *ngFor="let historial of historiales">
+    <a
+      href="#"
+      class="list-group-item list-group-item-action"
+      *ngFor="let historial of historiales"
+      (click)="buscar(historial)"
+    >
       {{ historial | titlecase }}
     </a>
   </div>

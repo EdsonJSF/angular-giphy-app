@@ -28,7 +28,6 @@ export class GifsService {
     if (!query) return;
 
     query = query.trim().toLocaleLowerCase();
-    if (this._historial.includes(query)) return;
 
     this.updateHistorial(query);
 
@@ -43,6 +42,7 @@ export class GifsService {
   }
 
   private updateHistorial(query: string) {
+    if (this._historial.includes(query)) return;
     this._historial.unshift(query);
     this.historialMax(10);
 
